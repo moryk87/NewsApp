@@ -12,35 +12,70 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="87" id="KGk-i7-Jjw" customClass="ArticlesTableViewCell" customModule="NewsApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articlesTableViewCell" rowHeight="80" id="KGk-i7-Jjw" customClass="ArticlesTableViewCell" customModule="NewsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-uI-ZBy">
-                        <rect key="frame" x="16" y="11" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CST-Hd-pKh">
-                        <rect key="frame" x="239" y="11" width="65" height="65"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AH-Pe-Yc8">
-                        <rect key="frame" x="16" y="55" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJS-22-abp">
+                        <rect key="frame" x="245" y="5.5" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="CbI-m3-NSG"/>
+                            <constraint firstAttribute="width" constant="70" id="bSH-Is-Hly"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="downloadButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aeE-lC-5XL"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNB-bN-Vku">
+                        <rect key="frame" x="0.0" y="0.0" width="245" height="80"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AH-Pe-Yc8">
+                                <rect key="frame" x="5" y="5" width="235" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-uI-ZBy">
+                                <rect key="frame" x="5" y="40" width="235" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MLz-uI-ZBy" firstAttribute="top" secondItem="0AH-Pe-Yc8" secondAttribute="bottom" id="06Q-JL-rYu"/>
+                            <constraint firstItem="0AH-Pe-Yc8" firstAttribute="top" secondItem="LNB-bN-Vku" secondAttribute="top" constant="5" id="6RM-pg-3hR"/>
+                            <constraint firstAttribute="bottom" secondItem="MLz-uI-ZBy" secondAttribute="bottom" constant="5" id="Cgc-z4-K2X"/>
+                            <constraint firstAttribute="trailing" secondItem="0AH-Pe-Yc8" secondAttribute="trailing" constant="5" id="erg-sa-Qhs"/>
+                            <constraint firstItem="0AH-Pe-Yc8" firstAttribute="leading" secondItem="LNB-bN-Vku" secondAttribute="leading" constant="5" id="i1s-KZ-1hu"/>
+                            <constraint firstItem="MLz-uI-ZBy" firstAttribute="top" secondItem="0AH-Pe-Yc8" secondAttribute="bottom" id="iHM-nb-8mB"/>
+                            <constraint firstItem="MLz-uI-ZBy" firstAttribute="height" secondItem="0AH-Pe-Yc8" secondAttribute="height" id="ibr-Sd-gYj"/>
+                            <constraint firstItem="MLz-uI-ZBy" firstAttribute="leading" secondItem="LNB-bN-Vku" secondAttribute="leading" constant="5" id="xKi-b7-mJt"/>
+                            <constraint firstAttribute="trailing" secondItem="MLz-uI-ZBy" secondAttribute="trailing" constant="5" id="xeo-XG-O0S"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="LNB-bN-Vku" secondAttribute="bottom" id="A58-Tg-cqP"/>
+                    <constraint firstItem="CJS-22-abp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="G5I-JN-noa"/>
+                    <constraint firstAttribute="trailing" secondItem="CJS-22-abp" secondAttribute="trailing" constant="5" id="Ypi-Nh-H2C"/>
+                    <constraint firstItem="LNB-bN-Vku" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hf7-l3-01B"/>
+                    <constraint firstItem="CJS-22-abp" firstAttribute="leading" secondItem="LNB-bN-Vku" secondAttribute="trailing" id="u8n-eF-blI"/>
+                    <constraint firstItem="LNB-bN-Vku" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="w9e-Co-Yg3"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="25" y="73.5"/>
+            <connections>
+                <outlet property="articleDescription" destination="0AH-Pe-Yc8" id="n8u-2U-T1A"/>
+                <outlet property="articleTitle" destination="MLz-uI-ZBy" id="N2V-1i-1sJ"/>
+                <outlet property="downloadButton" destination="CJS-22-abp" id="Aia-DB-hfy"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="73"/>
         </tableViewCell>
     </objects>
 </document>

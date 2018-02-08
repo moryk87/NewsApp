@@ -8,8 +8,17 @@
 
 import UIKit
 
+protocol ArticlesTableViewCellDelegate {
+    func saveLocalyButtonPressed(didSelect: ArticlesTableViewCell)
+}
+
 class ArticlesTableViewCell: UITableViewCell {
     
+    var delegate: ArticlesTableViewCellDelegate?
+    
+    @IBOutlet weak var articleTitle: UILabel!
+    @IBOutlet weak var articleDescription: UILabel!
+    @IBOutlet weak var downloadButton: UIButton!
     
 
     override func awakeFromNib() {
@@ -21,6 +30,12 @@ class ArticlesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func downloadButtonPressed(_ sender: UIButton) {
+        self.delegate?.saveLocalyButtonPressed(didSelect: self)
+        
+        print("pressed")
     }
     
 }

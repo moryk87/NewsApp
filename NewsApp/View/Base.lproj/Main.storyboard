@@ -36,7 +36,7 @@
                     <navigationItem key="navigationItem" id="rzI-id-tK5"/>
                     <connections>
                         <outlet property="sourceTable" destination="gIe-Sg-wVY" id="0wr-a0-lEJ"/>
-                        <segue destination="iFp-7e-kEa" kind="modal" identifier="firstToSecond" id="4Tc-Qu-EF1"/>
+                        <segue destination="iFp-7e-kEa" kind="show" identifier="firstToSecond" id="4Tc-Qu-EF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -67,7 +67,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="YXv-2h-CLC"/>
                     <connections>
-                        <segue destination="1xK-LH-YSd" kind="modal" id="Azt-h3-C6I"/>
+                        <outlet property="articlesTable" destination="yZb-1x-0WR" id="EHy-E4-O3l"/>
+                        <segue destination="1xK-LH-YSd" kind="modal" identifier="secondToThird" id="Azt-h3-C6I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04n-1H-IFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -81,19 +82,31 @@
                     <view key="view" contentMode="scaleToFill" id="Igt-4F-b9V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SPw-Vn-nIn">
+                                <rect key="frame" x="10" y="74" width="355" height="583"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SPw-Vn-nIn" firstAttribute="top" secondItem="NZa-gK-16A" secondAttribute="top" constant="10" id="P1G-5q-6Re"/>
+                            <constraint firstItem="NZa-gK-16A" firstAttribute="trailing" secondItem="SPw-Vn-nIn" secondAttribute="trailing" constant="10" id="RKT-T1-Gmk"/>
+                            <constraint firstItem="SPw-Vn-nIn" firstAttribute="leading" secondItem="NZa-gK-16A" secondAttribute="leading" constant="10" id="WQF-zl-YyU"/>
+                            <constraint firstItem="NZa-gK-16A" firstAttribute="bottom" secondItem="SPw-Vn-nIn" secondAttribute="bottom" constant="10" id="nq4-aM-qoY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NZa-gK-16A"/>
                     </view>
                     <navigationItem key="navigationItem" id="66p-6G-QGf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3C-Qi-TZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1914" y="117"/>
+            <point key="canvasLocation" x="1912.8" y="116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xY8-NA-1KD">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IE8-fR-Nfn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FirstNC" automaticallyAdjustsScrollViewInsets="NO" id="IE8-fR-Nfn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K7l-m5-Pxm">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -111,7 +124,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Vhr-KO-AoB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iFp-7e-kEa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SecondNC" automaticallyAdjustsScrollViewInsets="NO" id="iFp-7e-kEa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oek-nP-Mxk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
