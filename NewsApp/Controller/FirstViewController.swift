@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 //import Alamofire
 //import SwiftyJSON
 
@@ -14,7 +15,7 @@ import UIKit
 //    func didFinishGetArticles(finished: Bool)
 //}
 
-class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GetArticlesDelegate  {
     
     @IBOutlet weak var sourceTable: UITableView!
     
@@ -32,6 +33,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         sourceTable.register(UINib(nibName: "SourceTableViewCell", bundle: nil), forCellReuseIdentifier: "sourceTableViewCell")
         sourceTable.delegate = self
         sourceTable.dataSource = self
+        
+        getArticles.delegate = self
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,27 +52,17 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        sourceTable.deselectRow(at: indexPath, animated: true)
         selectedSource = sourceArray[indexPath.row]
         getArticles.getArticles(selected: urlShortcut[indexPath.row])
-        performSegue(withIdentifier: "firstToSecond", sender: self)
-        
-//        let centerViewController = SecondViewController(nibName: nil, bundle: nil)
-//        let centerSideBar = UINavigationController(rootViewController: centerViewController)
-//        self.present(centerSideBar, animated: true, completion: nil)
-        
-//        let secondViewController:SecondViewController = SecondViewController()
-//
-//        let destinationNavigationController = segue.destination as! UINavigationController
-//        let targetVC = destinationNavigationController.topViewController as! SecondViewController
-//
-//
-//        let centerViewController = SecondViewController(nibName: nil, bundle: nil)
-//        let centerSideBar = UINavigationController(rootViewController: centerViewController)
-        
-//        let secondViewController:SecondViewController = SecondViewController()
-//        self.present(secondViewController, animated: true, completion: nil)
+        HUD.show(.progress)
         
         print(selectedSource)
+    }
+    
+    func didFinishGetArticles(finished: Bool) {
+        HUD.hide()
+        performSegue(withIdentifier: "firstToSecond", sender: self)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -79,80 +72,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
 //
 ////            let shortcut = MyVariables.notificationArray[MyVariables.selectedNotificationIndex]
 ////            targetVC.delegate = self
-//        }
-//    }
-    
-    
-
-    
-//    class FooOneViewController: UIViewController,FooTwoViewControllerDelegate {
-//
-//        func myVCDidFinish(controller: FooTwoViewController, text: String) {
-//            colorLabel.text = "The Color is " +  text
-//            controller.navigationController?.popViewController(animated: true)
-//        }
-//
-//        override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-//            if segue.identifier == "mySegue"{
-//                let vc = segue.destination as! FooTwoViewController
-//                vc.colorString = colorLabel.text!
-//                vc.delegate = self
-//            }
-//        }
-//
-//    }
-//
-//    protocol FooTwoViewControllerDelegate{
-//        func myVCDidFinish(controller:FooTwoViewController,text:String)
-//    }
-//
-//    class FooTwoViewController: UIViewController {
-//
-//        var delegate:FooTwoViewControllerDelegate? = nil
-//
-//        @IBAction func saveColor(_ sender: UIBarButtonItem) {
-//            guard let delegate = self.delegate else {
-//                print("Delegate for FooTwoDelegateController not Set")
-//                return
-//            }
-//            delegate.myVCDidFinish(controller: self, text: colorLabel.text!)
-//        }
-//
-//    }
-    
-    
-    
-    //MARK: - JSON Parsing
-    /***************************************************************/
-    
-//    func getArticles(selected: String) {
-//        let finalURL = shortURL+selected+APIKey
-//        print("finalURL:")
-//        print(finalURL)
-//        
-//        Alamofire.request(finalURL, method: .get).responseJSON {
-//            response in
-//            
-//            if response.result.isSuccess {
-//                
-//                let dataJSON: JSON = JSON(response.result.value!)
-//                let articleArray = dataJSON["articles"].arrayValue
-//                
-//                articleArray.forEach {(dataJSON) in
-//                    MyVar.articles.append(ArticleLabel(json: dataJSON))
-//                    print(MyVar.articles)
-//                }
-//                
-//                print("/***************************************************************/")
-//                print(MyVar.articles[0].sourceID)
-//                
-//                self.delegate?.didFinishGetArticles(finished: true)
-//                
-//            } else {
-//                print("Error \(String(describing: response.result.error))")
-////                    MyVariables.timeStamp = "Connection issues"
-//            }
-//
 //        }
 //    }
                           

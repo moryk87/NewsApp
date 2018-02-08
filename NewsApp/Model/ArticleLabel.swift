@@ -11,22 +11,22 @@ import SwiftyJSON
 
 class ArticleLabel {
     
-    var author: String!
-    var description: String!
-    var publishedAt: String!
-    var title: String!
-    var url: String!
     var sourceID: String!
+    var author: String!
+    var title: String!
+    var description: String!
+    var url: String!
+    var publishedAt: String!
     var saved: Bool = false
     
     
     init(json: JSON) {
-        self.publishedAt = json["publishedAt"].string
+        self.sourceID = json["source"]["id"].string
         self.author = json["author"].string
         self.title = json["title"].string
-        self.description = json["desctiption"].string
+        self.description = json["description"].string
         self.url = json["url"].string
-        self.sourceID = json["source"]["id"].string
+        self.publishedAt = json["publishedAt"].string
     }
     
     

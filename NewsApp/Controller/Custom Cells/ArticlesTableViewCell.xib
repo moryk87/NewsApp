@@ -12,36 +12,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articlesTableViewCell" rowHeight="80" id="KGk-i7-Jjw" customClass="ArticlesTableViewCell" customModule="NewsApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="articlesTableViewCell" id="KGk-i7-Jjw" customClass="ArticlesTableViewCell" customModule="NewsApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJS-22-abp">
-                        <rect key="frame" x="245" y="5.5" width="70" height="70"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="70" id="CbI-m3-NSG"/>
-                            <constraint firstAttribute="width" constant="70" id="bSH-Is-Hly"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <connections>
-                            <action selector="downloadButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aeE-lC-5XL"/>
-                        </connections>
-                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNB-bN-Vku">
-                        <rect key="frame" x="0.0" y="0.0" width="245" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="290" height="80"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AH-Pe-Yc8">
-                                <rect key="frame" x="5" y="5" width="235" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AH-Pe-Yc8">
+                                <rect key="frame" x="5" y="5" width="280" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-uI-ZBy">
-                                <rect key="frame" x="5" y="40" width="235" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-uI-ZBy">
+                                <rect key="frame" x="5" y="40" width="280" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -59,13 +48,20 @@
                             <constraint firstAttribute="trailing" secondItem="MLz-uI-ZBy" secondAttribute="trailing" constant="5" id="xeo-XG-O0S"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="004-shapes" translatesAutoresizingMaskIntoConstraints="NO" id="YKh-xB-SaA">
+                        <rect key="frame" x="295" y="5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Rmz-5V-6Zv"/>
+                            <constraint firstAttribute="width" constant="20" id="y1L-TX-oGv"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="YKh-xB-SaA" secondAttribute="trailing" constant="5" id="1yn-Oz-RLG"/>
                     <constraint firstAttribute="bottom" secondItem="LNB-bN-Vku" secondAttribute="bottom" id="A58-Tg-cqP"/>
-                    <constraint firstItem="CJS-22-abp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="G5I-JN-noa"/>
-                    <constraint firstAttribute="trailing" secondItem="CJS-22-abp" secondAttribute="trailing" constant="5" id="Ypi-Nh-H2C"/>
+                    <constraint firstItem="YKh-xB-SaA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="AzA-cu-wNY"/>
+                    <constraint firstItem="YKh-xB-SaA" firstAttribute="leading" secondItem="LNB-bN-Vku" secondAttribute="trailing" constant="5" id="UHO-0a-Qb0"/>
                     <constraint firstItem="LNB-bN-Vku" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hf7-l3-01B"/>
-                    <constraint firstItem="CJS-22-abp" firstAttribute="leading" secondItem="LNB-bN-Vku" secondAttribute="trailing" id="u8n-eF-blI"/>
                     <constraint firstItem="LNB-bN-Vku" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="w9e-Co-Yg3"/>
                 </constraints>
             </tableViewCellContentView>
@@ -73,9 +69,12 @@
             <connections>
                 <outlet property="articleDescription" destination="0AH-Pe-Yc8" id="n8u-2U-T1A"/>
                 <outlet property="articleTitle" destination="MLz-uI-ZBy" id="N2V-1i-1sJ"/>
-                <outlet property="downloadButton" destination="CJS-22-abp" id="Aia-DB-hfy"/>
+                <outlet property="savedImage" destination="YKh-xB-SaA" id="71w-iy-Xbt"/>
             </connections>
             <point key="canvasLocation" x="25" y="73"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="004-shapes" width="24" height="24"/>
+    </resources>
 </document>

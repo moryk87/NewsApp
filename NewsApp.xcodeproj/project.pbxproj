@@ -10,6 +10,7 @@
 		144B504C202B500F0026B776 /* ArticleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B504B202B500F0026B776 /* ArticleLabel.swift */; };
 		144B504E202B70410026B776 /* MyVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B504D202B70410026B776 /* MyVar.swift */; };
 		144B5050202BC1720026B776 /* GetArticles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B504F202BC1720026B776 /* GetArticles.swift */; };
+		144B5052202CA7C80026B776 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B5051202CA7C80026B776 /* WebKitViewController.swift */; };
 		14AA923A2027A52700F5AE8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA92392027A52700F5AE8A /* AppDelegate.swift */; };
 		14AA923C2027A52700F5AE8A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA923B2027A52700F5AE8A /* FirstViewController.swift */; };
 		14AA923F2027A52700F5AE8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AA923D2027A52700F5AE8A /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		144B504B202B500F0026B776 /* ArticleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleLabel.swift; sourceTree = "<group>"; };
 		144B504D202B70410026B776 /* MyVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVar.swift; sourceTree = "<group>"; };
 		144B504F202BC1720026B776 /* GetArticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArticles.swift; sourceTree = "<group>"; };
+		144B5051202CA7C80026B776 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
 		14AA92362027A52700F5AE8A /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AA92392027A52700F5AE8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14AA923B2027A52700F5AE8A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -100,8 +102,8 @@
 		14AA924E2027A60700F5AE8A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14AA92402027A52700F5AE8A /* NewsApp.xcdatamodeld */,
 				144B504B202B500F0026B776 /* ArticleLabel.swift */,
+				14AA92402027A52700F5AE8A /* NewsApp.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -120,6 +122,7 @@
 			children = (
 				14AA923B2027A52700F5AE8A /* FirstViewController.swift */,
 				14AA92562027B37F00F5AE8A /* SecondViewController.swift */,
+				144B5051202CA7C80026B776 /* WebKitViewController.swift */,
 				144B504F202BC1720026B776 /* GetArticles.swift */,
 				14AA92582027B62A00F5AE8A /* Custom Cells */,
 				144B504D202B70410026B776 /* MyVar.swift */,
@@ -251,11 +254,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NewsApp/Pods-NewsApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +301,7 @@
 				144B504E202B70410026B776 /* MyVar.swift in Sources */,
 				144B5050202BC1720026B776 /* GetArticles.swift in Sources */,
 				14AA925B2027B71700F5AE8A /* ArticlesTableViewCell.swift in Sources */,
+				144B5052202CA7C80026B776 /* WebKitViewController.swift in Sources */,
 				14AA92422027A52700F5AE8A /* NewsApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

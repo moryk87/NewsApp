@@ -10,5 +10,4 @@ import Foundation
 
 struct MyVar {
     static var articles: [ArticleLabel] = []
-    
 }

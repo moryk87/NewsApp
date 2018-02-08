@@ -37,10 +37,15 @@ class GetArticles {
                 articleArray.forEach {(dataJSON) in
                     MyVar.articles.append(ArticleLabel(json: dataJSON))
                     print(MyVar.articles)
+                    
                 }
                 
                 print("/***************************************************************/")
                 print(MyVar.articles[0].sourceID)
+                print(MyVar.articles[0].title)
+                print(MyVar.articles[0].description)
+                print(MyVar.articles[0].url)
+                
                 
                 self.delegate?.didFinishGetArticles(finished: true)
                 
