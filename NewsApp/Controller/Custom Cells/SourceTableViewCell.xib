@@ -20,16 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T83-3h-tgL">
-                        <rect key="frame" x="10" y="10" width="150" height="23"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="150" id="ODV-vd-Djz"/>
-                        </constraints>
+                        <rect key="frame" x="5" y="10" width="270" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ECW-Nc-cJO">
-                        <rect key="frame" x="275" y="4.5" width="35" height="35"/>
+                        <rect key="frame" x="280" y="4.5" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="4iD-HB-usR"/>
                             <constraint firstAttribute="height" constant="35" id="REN-UV-P45"/>
@@ -38,9 +35,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="T83-3h-tgL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="0dN-fh-fdY"/>
-                    <constraint firstItem="T83-3h-tgL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="N4H-6k-crQ"/>
+                    <constraint firstItem="T83-3h-tgL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="N4H-6k-crQ"/>
                     <constraint firstItem="ECW-Nc-cJO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QgF-yC-2iM"/>
-                    <constraint firstAttribute="trailing" secondItem="ECW-Nc-cJO" secondAttribute="trailing" constant="10" id="ccm-LU-SoL"/>
+                    <constraint firstItem="ECW-Nc-cJO" firstAttribute="leading" secondItem="T83-3h-tgL" secondAttribute="trailing" constant="5" id="bsJ-ZA-76b"/>
+                    <constraint firstAttribute="trailing" secondItem="ECW-Nc-cJO" secondAttribute="trailing" constant="5" id="ccm-LU-SoL"/>
                     <constraint firstAttribute="bottom" secondItem="T83-3h-tgL" secondAttribute="bottom" constant="10" id="pdb-5i-4Wh"/>
                 </constraints>
             </tableViewCellContentView>

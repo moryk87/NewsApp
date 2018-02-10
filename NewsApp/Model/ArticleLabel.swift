@@ -19,7 +19,6 @@ class ArticleLabel {
     var publishedAt: String!
     var saved: Bool = false
     
-    
     init(json: JSON) {
         self.sourceID = json["source"]["id"].string
         self.author = json["author"].string

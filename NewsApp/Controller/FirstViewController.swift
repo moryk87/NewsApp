@@ -8,26 +8,20 @@
 
 import UIKit
 import PKHUD
-//import Alamofire
-//import SwiftyJSON
 
-//protocol FirstViewControllerDelegate {
-//    func didFinishGetArticles(finished: Bool)
-//}
-
-class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GetArticlesDelegate  {
+class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     @IBOutlet weak var sourceTable: UITableView!
     
     let sourceArray = ["CNN","Bloomberg","Business Insider","BBC News","IGN"]
-    let urlShortcut = ["cnn","bloomberg","business-insider","bbc-new","ign"]
-//    let shortURL = "https://newsapi.org/v2/top-headlines?sources="
-//    let APIKey = "&apiKey=e5f010b0e6d143b1a93c6567939c721d"
+    let urlShortcut = ["cnn","bloomberg","business-insider","bbc-news","ign"]
     var selectedSource: String  = ""
     var getArticles = GetArticles ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
         sourceTable.tableFooterView = UIView()
         sourceTable.register(UINib(nibName: "SourceTableViewCell", bundle: nil), forCellReuseIdentifier: "sourceTableViewCell")
@@ -45,7 +39,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = sourceTable.dequeueReusableCell(withIdentifier: "sourceTableViewCell", for: indexPath) as! SourceTableViewCell
         
         cell.sourceLabel.text = sourceArray[indexPath.row]
-        cell.sourceImage.image = UIImage(named: sourceArray[indexPath.row])
+        cell.sourceImage.image = UIImage(named: urlShortcut[indexPath.row])
         
         return cell
     }
@@ -59,23 +53,14 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         print(selectedSource)
     }
+  
+}
+
+extension FirstViewController: GetArticlesDelegate {
     
     func didFinishGetArticles(finished: Bool) {
         HUD.hide()
         performSegue(withIdentifier: "firstToSecond", sender: self)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "firstToSecond" {
-//            let destinationNavigationController = segue.destination as! UINavigationController
-//            let targetVC = destinationNavigationController.topViewController as! SecondViewController
-//
-////            let shortcut = MyVariables.notificationArray[MyVariables.selectedNotificationIndex]
-////            targetVC.delegate = self
-//        }
-//    }
-                          
-
-    
 }
-

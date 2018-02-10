@@ -1,0 +1,112 @@
+//
+//  MasterThirdTableViewController.swift
+//  NewsApp
+//
+//  Created by Jan Moravek on 09/02/2018.
+//  Copyright © 2018 Jan Moravek. All rights reserved.
+//
+
+import UIKit
+import CoreData
+import SwipeCellKit
+
+//protocol MasterThirdTableViewControllerDelegate {
+//    func deleteSelectedArticle(didSelect: Int)
+//}
+
+class MasterThirdTableViewController: UITableViewController {
+    
+//    var delegate: MasterThirdTableViewControllerDelegate?
+    var selectedArticle: Int?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: "SavedArticlesTableViewCell", bundle: nil), forCellReuseIdentifier: "savedArticlesTableViewCell")
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MyVar.savedArticles?.count ?? 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "savedArticlesTableViewCell", for: indexPath) as! SavedArticlesTableViewCell
+        
+        cell.delegate = self
+        cell.articleTitle.text = MyVar.savedArticles?[indexPath.row].title ?? "No articles"
+        cell.articleDescription.text = MyVar.savedArticles?[indexPath.row].articleDescription ?? ""
+        cell.articleImage.image = UIImage(named: (MyVar.savedArticles?[indexPath.row].sourceID)!) ?? nil
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedArticle = indexPath.row
+        performSegue(withIdentifier: "masterToDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "masterToDetail" {
+            
+            let targetNC = segue.destination as! UINavigationController
+            let targetVC = targetNC.topViewController! as! DetailThirdViewController
+            
+            print(MyVar.savedArticles![selectedArticle!].html!)
+            targetVC.myHTML = MyVar.savedArticles![selectedArticle!].html
+        }
+    }
+    
+    func unCheckSaved(position: Int) {
+        if let atPosition = MyVar.articles.index(where: {$0.title == MyVar.savedArticles![position].title!}) {
+            print("/***************************************************************/")
+            print(MyVar.articles[atPosition].title)
+            MyVar.articles[atPosition].saved = false
+        }
+    }
+    
+    func deleteArticle(position: Int) {
+
+        print("deleteArticle position:")
+        print(position)
+        print(MyVar.savedArticles![position].title!)
+        context.delete(MyVar.savedArticles![position])
+
+        do {
+            try context.save()
+            print("delete from CoreData")
+        } catch {
+            print("Error saving content::: \(error)")
+        }
+        
+        MyVar.savedArticles?.remove(at: position)
+        
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+
+}
+
+extension MasterThirdTableViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            print("item deleted")
+//            self.delegate?.deleteSelectedArticle(didSelect: indexPath.row)
+            self.unCheckSaved(position: indexPath.row)
+            self.deleteArticle(position: indexPath.row)
+        }
+        
+        return [deleteAction]
+    }
+}
+
+

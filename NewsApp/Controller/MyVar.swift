@@ -10,4 +10,5 @@ import Foundation
 
 struct MyVar {
     static var articles: [ArticleLabel] = []
+    static var savedArticles: [SavedArticle]?
 }

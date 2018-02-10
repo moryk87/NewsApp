@@ -11,6 +11,11 @@
 		144B504E202B70410026B776 /* MyVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B504D202B70410026B776 /* MyVar.swift */; };
 		144B5050202BC1720026B776 /* GetArticles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B504F202BC1720026B776 /* GetArticles.swift */; };
 		144B5052202CA7C80026B776 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B5051202CA7C80026B776 /* WebKitViewController.swift */; };
+		144B5056202D14910026B776 /* DetailThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B5055202D14910026B776 /* DetailThirdViewController.swift */; };
+		144B5058202D14CA0026B776 /* MasterThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B5057202D14CA0026B776 /* MasterThirdTableViewController.swift */; };
+		144B505B202D16320026B776 /* SavedArticlesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B5059202D16320026B776 /* SavedArticlesTableViewCell.swift */; };
+		144B505C202D16320026B776 /* SavedArticlesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 144B505A202D16320026B776 /* SavedArticlesTableViewCell.xib */; };
+		144B505F202E01BD0026B776 /* SplitThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144B505E202E01BD0026B776 /* SplitThirdViewController.swift */; };
 		14AA923A2027A52700F5AE8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA92392027A52700F5AE8A /* AppDelegate.swift */; };
 		14AA923C2027A52700F5AE8A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA923B2027A52700F5AE8A /* FirstViewController.swift */; };
 		14AA923F2027A52700F5AE8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14AA923D2027A52700F5AE8A /* Main.storyboard */; };
@@ -31,6 +36,11 @@
 		144B504D202B70410026B776 /* MyVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVar.swift; sourceTree = "<group>"; };
 		144B504F202BC1720026B776 /* GetArticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArticles.swift; sourceTree = "<group>"; };
 		144B5051202CA7C80026B776 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
+		144B5055202D14910026B776 /* DetailThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailThirdViewController.swift; sourceTree = "<group>"; };
+		144B5057202D14CA0026B776 /* MasterThirdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterThirdTableViewController.swift; sourceTree = "<group>"; };
+		144B5059202D16320026B776 /* SavedArticlesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedArticlesTableViewCell.swift; sourceTree = "<group>"; };
+		144B505A202D16320026B776 /* SavedArticlesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedArticlesTableViewCell.xib; sourceTree = "<group>"; };
+		144B505E202E01BD0026B776 /* SplitThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitThirdViewController.swift; sourceTree = "<group>"; };
 		14AA92362027A52700F5AE8A /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AA92392027A52700F5AE8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14AA923B2027A52700F5AE8A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -123,9 +133,12 @@
 				14AA923B2027A52700F5AE8A /* FirstViewController.swift */,
 				14AA92562027B37F00F5AE8A /* SecondViewController.swift */,
 				144B5051202CA7C80026B776 /* WebKitViewController.swift */,
+				144B5057202D14CA0026B776 /* MasterThirdTableViewController.swift */,
+				144B5055202D14910026B776 /* DetailThirdViewController.swift */,
+				144B505E202E01BD0026B776 /* SplitThirdViewController.swift */,
 				144B504F202BC1720026B776 /* GetArticles.swift */,
-				14AA92582027B62A00F5AE8A /* Custom Cells */,
 				144B504D202B70410026B776 /* MyVar.swift */,
+				14AA92582027B62A00F5AE8A /* Custom Cells */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -145,6 +158,8 @@
 				14AA925A2027B71700F5AE8A /* ArticlesTableViewCell.xib */,
 				14AA92522027ADD700F5AE8A /* SourceTableViewCell.swift */,
 				14AA92532027ADD700F5AE8A /* SourceTableViewCell.xib */,
+				144B5059202D16320026B776 /* SavedArticlesTableViewCell.swift */,
+				144B505A202D16320026B776 /* SavedArticlesTableViewCell.xib */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -222,6 +237,7 @@
 			files = (
 				14AA925C2027B71700F5AE8A /* ArticlesTableViewCell.xib in Resources */,
 				14AA92552027ADD700F5AE8A /* SourceTableViewCell.xib in Resources */,
+				144B505C202D16320026B776 /* SavedArticlesTableViewCell.xib in Resources */,
 				14AA92472027A52700F5AE8A /* LaunchScreen.storyboard in Resources */,
 				14AA92442027A52700F5AE8A /* Assets.xcassets in Resources */,
 				14AA923F2027A52700F5AE8A /* Main.storyboard in Resources */,
@@ -256,12 +272,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -298,11 +316,15 @@
 				14AA923A2027A52700F5AE8A /* AppDelegate.swift in Sources */,
 				14AA92572027B37F00F5AE8A /* SecondViewController.swift in Sources */,
 				144B504C202B500F0026B776 /* ArticleLabel.swift in Sources */,
+				144B505F202E01BD0026B776 /* SplitThirdViewController.swift in Sources */,
 				144B504E202B70410026B776 /* MyVar.swift in Sources */,
 				144B5050202BC1720026B776 /* GetArticles.swift in Sources */,
 				14AA925B2027B71700F5AE8A /* ArticlesTableViewCell.swift in Sources */,
+				144B505B202D16320026B776 /* SavedArticlesTableViewCell.swift in Sources */,
+				144B5058202D14CA0026B776 /* MasterThirdTableViewController.swift in Sources */,
 				144B5052202CA7C80026B776 /* WebKitViewController.swift in Sources */,
 				14AA92422027A52700F5AE8A /* NewsApp.xcdatamodeld in Sources */,
+				144B5056202D14910026B776 /* DetailThirdViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

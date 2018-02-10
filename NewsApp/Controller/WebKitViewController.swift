@@ -10,31 +10,12 @@ import UIKit
 import WebKit
 import PKHUD
 
-//class WebKitViewController: UIViewController, WKUIDelegate {
 class WebKitViewController: UIViewController, WKNavigationDelegate {
-
-//    let myURL = URL(string: MyVar.articles[selected].url)
-//    let myRequest = URLRequest(url: myURL!)
     
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var backButton: UIBarButtonItem!
     
     var myURL: URL?
-    
-//    override func loadView() {
-//        let webConfiguration = WKWebViewConfiguration()
-//        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-//        webView.uiDelegate = self
-//        view = webView
-//    }
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        let myURL = URL(string: "https://www.apple.com")
-//        let myRequest = URLRequest(url: myURL!)
-//        webView.load(myRequest)
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

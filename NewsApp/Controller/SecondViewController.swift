@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -15,6 +16,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var savedButton: UIBarButtonItem!
     
     var selectedArticle: Int?
+    var html: String?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,13 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         articlesTable.register(UINib(nibName: "ArticlesTableViewCell", bundle: nil), forCellReuseIdentifier: "articlesTableViewCell")
         articlesTable.dataSource = self
         articlesTable.delegate = self
+        
+        retrieveArticle()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        articlesTable.reloadData()
+        print("viewDidAppear reload")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,15 +42,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = articlesTable.dequeueReusableCell(withIdentifier: "articlesTableViewCell", for: indexPath) as! ArticlesTableViewCell
         
-        print(MyVar.articles[indexPath.row].title)
-        print(MyVar.articles[indexPath.row].description)
         cell.articleTitle.text = MyVar.articles[indexPath.row].title
         cell.articleDescription.text = MyVar.articles[indexPath.row].description
         
+        checkIfSaved(position: indexPath.row)
+        
         if MyVar.articles[indexPath.row].saved == false {
-            cell.savedImage.image = UIImage(named: "004-shapes")
+            cell.savedImage.image = UIImage(named: "004-false")
         } else {
-            cell.savedImage.image = UIImage(named: "003-shapes")
+            cell.savedImage.image = UIImage(named: "003-true")
         }
         
         return cell
@@ -52,11 +62,35 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         articlesTable.deselectRow(at: indexPath, animated: true)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "secondToWeb" {
+            let targetVC = segue.destination as! WebKitViewController
+            
+            targetVC.myURL = URL(string: MyVar.articles[selectedArticle!].url)
+            print(targetVC.myURL!)
+            
+        } else if segue.identifier == "secondToThird" {
+            
+            //            let destinationSVC = segue.destination as! SplitThirdViewController
+            //            let targetNC = destinationSVC.view as! UINavigationController
+            //            let targetVC = as! MasterThirdTableViewController
+            
+            //            targetVC.delegate = self
+        }
+        
+    }
+    
+    //MARK: - save etc.
+    /***************************************************************/
+    
     func alertPopUp(selected: Int) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let actionSave = UIAlertAction(title: "Save", style: .default) { _ in
             print("Action Save")
+            
+            self.saveHTML(position: selected)
+            self.saveArticle(position: selected)
             MyVar.articles[selected].saved = true
             self.articlesTable.reloadData()
         }
@@ -77,16 +111,67 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "secondToWeb" {
-            let targetVC = segue.destination as! WebKitViewController
+    
+    
+    func saveHTML(position: Int) {
+        print(MyVar.articles[position].url)
+        let myURLString = MyVar.articles[position].url
+        guard let myURL = URL(string: myURLString!) else {
+            print("Error: \(String(describing: myURLString)) doesn't seem to be a valid URL")
+            return
+        }
+        
+        do {
+            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+            print("/***************************************************************/")
+            print("HTML : \(myHTMLString)")
+            print("/***************************************************************/")
+            html = myHTMLString
             
-            targetVC.myURL = URL(string: MyVar.articles[selectedArticle!].url)
-            print(targetVC.myURL!)
+        } catch let error {
+            print("Error: \(error)")
         }
     }
     
+    func saveArticle(position: Int) {
+        let article = SavedArticle(context: context)
+        
+        article.title = MyVar.articles[position].title
+        article.articleDescription = MyVar.articles[position].description
+        article.author = MyVar.articles[position].author
+        article.sourceID = MyVar.articles[position].sourceID
+        article.publishedAt = MyVar.articles[position].publishedAt
+        article.url = MyVar.articles[position].url
+        article.html = html
+        
+        do {
+            try context.save()
+            retrieveArticle()
+            
+            print("Saved")
+        } catch {
+            print("Error saving content::: \(error)")
+        }
+    }
     
+    func retrieveArticle() {
+        let request: NSFetchRequest<SavedArticle> = SavedArticle.fetchRequest()
+        
+        do {
+            MyVar.savedArticles = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context::: \(error)")
+        }
+    }
+    
+    func checkIfSaved(position: Int) {
+        if (MyVar.savedArticles?.contains(where: {$0.title == MyVar.articles[position].title}))! {
+            MyVar.articles[position].saved = true
+        }
+    }
+    
+    //MARK: - IBActions
+    /***************************************************************/
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -96,5 +181,13 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func savedButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "secondToThird", sender: self)
     }
-    
+
 }
+
+
+//extension SecondViewController: MasterThirdTableViewControllerDelegate {
+//    func deleteSelectedArticle(didSelect: Int) {
+//        print("delete")
+//        print(didSelect)
+//    }
+//}
