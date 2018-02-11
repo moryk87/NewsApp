@@ -57,7 +57,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        alertPopUp(selected: indexPath.row)
+        alertPopUp(selected: indexPath)
         selectedArticle = indexPath.row
         articlesTable.deselectRow(at: indexPath, animated: true)
     }
@@ -71,11 +71,11 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
         } else if segue.identifier == "secondToThird" {
             
-            //            let destinationSVC = segue.destination as! SplitThirdViewController
-            //            let targetNC = destinationSVC.view as! UINavigationController
-            //            let targetVC = as! MasterThirdTableViewController
+            let destinationSVC = segue.destination as! SplitThirdViewController
+            let targetNC = destinationSVC.viewControllers.first as! UINavigationController
+            let targetVC = targetNC.topViewController as! MasterThirdTableViewController
             
-            //            targetVC.delegate = self
+            targetVC.delegate = self
         }
         
     }
@@ -83,15 +83,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //MARK: - save etc.
     /***************************************************************/
     
-    func alertPopUp(selected: Int) {
+    func alertPopUp(selected: IndexPath) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let actionSave = UIAlertAction(title: "Save", style: .default) { _ in
             print("Action Save")
             
-            self.saveHTML(position: selected)
-            self.saveArticle(position: selected)
-            MyVar.articles[selected].saved = true
+            self.saveHTML(position: selected.row)
+            self.saveArticle(position: selected.row)
+            MyVar.articles[selected.row].saved = true
             self.articlesTable.reloadData()
         }
         actionSave.setValue(UIImage(named:"002-save"), forKey: "image")
@@ -104,15 +104,13 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         actionOpen.setValue(UIImage(named:"001-open"), forKey: "image")
         alert.addAction(actionOpen)
- 
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.popoverPresentationController?.sourceView = articlesTable.cellForRow(at: selected)
+
         present(alert, animated: true)
     }
-    
-    
-    
-    
+   
     func saveHTML(position: Int) {
         print(MyVar.articles[position].url)
         let myURLString = MyVar.articles[position].url
@@ -144,11 +142,14 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         article.url = MyVar.articles[position].url
         article.html = html
         
+        saveCore()
+    }
+    
+    func saveCore() {
         do {
             try context.save()
             retrieveArticle()
-            
-            print("Saved")
+            print("delete from CoreData")
         } catch {
             print("Error saving content::: \(error)")
         }
@@ -162,6 +163,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             print("Error fetching data from context::: \(error)")
         }
+    }
+    
+    func deleteArticle(position: Int) {
+        
+        print("deleteArticle position:")
+        print(position)
+        print(MyVar.savedArticles![position].title!)
+        context.delete(MyVar.savedArticles![position])
+        
+        saveCore()
     }
     
     func checkIfSaved(position: Int) {
@@ -185,9 +196,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
 }
 
 
-//extension SecondViewController: MasterThirdTableViewControllerDelegate {
-//    func deleteSelectedArticle(didSelect: Int) {
-//        print("delete")
-//        print(didSelect)
-//    }
-//}
+extension SecondViewController: MasterThirdTableViewControllerDelegate {
+    func deleteSelectedArticle(didSelect: Int) {
+        print("delete")
+        print(didSelect)
+        
+        self.deleteArticle(position: didSelect)
+    }
+}
+

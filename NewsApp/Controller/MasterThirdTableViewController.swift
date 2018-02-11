@@ -7,18 +7,16 @@
 //
 
 import UIKit
-import CoreData
 import SwipeCellKit
 
-//protocol MasterThirdTableViewControllerDelegate {
-//    func deleteSelectedArticle(didSelect: Int)
-//}
+protocol MasterThirdTableViewControllerDelegate {
+    func deleteSelectedArticle(didSelect: Int)
+}
 
 class MasterThirdTableViewController: UITableViewController {
     
-//    var delegate: MasterThirdTableViewControllerDelegate?
+    var delegate: MasterThirdTableViewControllerDelegate?
     var selectedArticle: Int?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,29 +65,9 @@ class MasterThirdTableViewController: UITableViewController {
         }
     }
     
-    func deleteArticle(position: Int) {
-
-        print("deleteArticle position:")
-        print(position)
-        print(MyVar.savedArticles![position].title!)
-        context.delete(MyVar.savedArticles![position])
-
-        do {
-            try context.save()
-            print("delete from CoreData")
-        } catch {
-            print("Error saving content::: \(error)")
-        }
-        
-        MyVar.savedArticles?.remove(at: position)
-        
-        self.tableView.reloadData()
-    }
-    
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 
 }
 
@@ -100,9 +78,9 @@ extension MasterThirdTableViewController: SwipeTableViewCellDelegate {
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
             print("item deleted")
-//            self.delegate?.deleteSelectedArticle(didSelect: indexPath.row)
             self.unCheckSaved(position: indexPath.row)
-            self.deleteArticle(position: indexPath.row)
+            self.delegate?.deleteSelectedArticle(didSelect: indexPath.row)
+            self.tableView.reloadData()
         }
         
         return [deleteAction]
