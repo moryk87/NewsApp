@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+//        guard let splitVC = window?.rootViewController as? UISplitViewController,
+//            let masterNC = splitVC.viewControllers.first as? UINavigationController,
+//            let masterVC = masterNC.topViewController as? MasterThirdTableViewController,
+//            let detailNC = splitVC.viewControllers.last as? UINavigationController,
+//            let detailVC = detailNC.topViewController as? DetailThirdViewController
+//            else { fatalError()}
+//        
+//        masterVC.delegateDetail = detailVC
+//        
+//        detailVC.navigationItem.leftItemsSupplementBackButton = true
+//        detailVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem
+        
         return true
     }
 

@@ -18,12 +18,12 @@ class DetailThirdViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if myHTML != nil {
             webView.loadHTMLString(myHTML!, baseURL: nil)
             webView.navigationDelegate = self
         }
-        
+
         self.view.addSubview(webView)
         self.view.sendSubview(toBack: webView)
     }
@@ -31,10 +31,25 @@ class DetailThirdViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         HUD.flash(.progress)
     }
-    
+
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 
 
 }
+
+
+//extension DetailThirdViewController: MasterToDetail {
+//
+//    func selectedSavedArticle(html: String) {
+//
+//        webView.loadHTMLString(html, baseURL: nil)
+//        webView.navigationDelegate = self
+//
+//        self.view.addSubview(webView)
+//        self.view.sendSubview(toBack: webView)
+//    }
+//
+//}
+

@@ -13,18 +13,23 @@ protocol MasterThirdTableViewControllerDelegate {
     func deleteSelectedArticle(didSelect: Int)
 }
 
+//protocol MasterToDetail {
+//    func selectedSavedArticle(html: String)
+//}
+
 class MasterThirdTableViewController: UITableViewController {
     
     var delegate: MasterThirdTableViewControllerDelegate?
+//    var delegateDetail: MasterToDetail?
     var selectedArticle: Int?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
         tableView.register(UINib(nibName: "SavedArticlesTableViewCell", bundle: nil), forCellReuseIdentifier: "savedArticlesTableViewCell")
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MyVar.savedArticles?.count ?? 1
     }
@@ -44,6 +49,9 @@ class MasterThirdTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedArticle = indexPath.row
         performSegue(withIdentifier: "masterToDetail", sender: self)
+        
+//        if let detailVC = delegateDetail as? DetailThirdViewController,
+//            let detailNC = detailVC.navigationController {splitViewController?.showDetailViewController(detailNC, sender: nil)}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,7 +76,7 @@ class MasterThirdTableViewController: UITableViewController {
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
 }
 
 extension MasterThirdTableViewController: SwipeTableViewCellDelegate {
