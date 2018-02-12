@@ -21,7 +21,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
         sourceTable.tableFooterView = UIView()
         sourceTable.register(UINib(nibName: "SourceTableViewCell", bundle: nil), forCellReuseIdentifier: "sourceTableViewCell")
@@ -50,8 +50,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         selectedSource = sourceArray[indexPath.row]
         getArticles.getArticles(selected: urlShortcut[indexPath.row])
         HUD.show(.progress)
-        
-        print(selectedSource)
     }
   
 }

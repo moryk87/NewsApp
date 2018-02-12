@@ -60,15 +60,12 @@ class MasterThirdTableViewController: UITableViewController {
             let targetNC = segue.destination as! UINavigationController
             let targetVC = targetNC.topViewController! as! DetailThirdViewController
             
-            print(MyVar.savedArticles![selectedArticle!].html!)
             targetVC.myHTML = MyVar.savedArticles![selectedArticle!].html
         }
     }
     
     func unCheckSaved(position: Int) {
         if let atPosition = MyVar.articles.index(where: {$0.title == MyVar.savedArticles![position].title!}) {
-            print("/***************************************************************/")
-            print(MyVar.articles[atPosition].title)
             MyVar.articles[atPosition].saved = false
         }
     }
@@ -85,7 +82,6 @@ extension MasterThirdTableViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            print("item deleted")
             self.unCheckSaved(position: indexPath.row)
             self.delegate?.deleteSelectedArticle(didSelect: indexPath.row)
             self.tableView.reloadData()

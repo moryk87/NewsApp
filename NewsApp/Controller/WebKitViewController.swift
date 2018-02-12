@@ -39,12 +39,9 @@ class WebKitViewController: UIViewController, WKNavigationDelegate {
         print(error.localizedDescription)
     }
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("Start to load")
-//        HUD.flash(.progress)
         HUD.show(.progress)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("finish to load")
         HUD.hide()
     }
 

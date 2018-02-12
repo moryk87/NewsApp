@@ -32,7 +32,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         articlesTable.reloadData()
-        print("viewDidAppear reload")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,9 +64,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "secondToWeb" {
             let targetVC = segue.destination as! WebKitViewController
-            
             targetVC.myURL = URL(string: MyVar.articles[selectedArticle!].url)
-            print(targetVC.myURL!)
             
         } else if segue.identifier == "secondToThird" {
             
@@ -87,7 +84,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let actionSave = UIAlertAction(title: "Save", style: .default) { _ in
-            print("Action Save")
             
             self.saveHTML(position: selected.row)
             self.saveArticle(position: selected.row)
@@ -98,7 +94,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.addAction(actionSave)
         
         let actionOpen = UIAlertAction(title: "Open", style: .default) { _ in
-            print("Action Open")
             
             self.performSegue(withIdentifier: "secondToWeb", sender: self)
         }
@@ -112,7 +107,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
    
     func saveHTML(position: Int) {
-        print(MyVar.articles[position].url)
         let myURLString = MyVar.articles[position].url
         guard let myURL = URL(string: myURLString!) else {
             print("Error: \(String(describing: myURLString)) doesn't seem to be a valid URL")
@@ -121,9 +115,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         do {
             let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            print("/***************************************************************/")
-            print("HTML : \(myHTMLString)")
-            print("/***************************************************************/")
             html = myHTMLString
             
         } catch let error {
@@ -149,7 +140,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         do {
             try context.save()
             retrieveArticle()
-            print("delete from CoreData")
         } catch {
             print("Error saving content::: \(error)")
         }
@@ -166,12 +156,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func deleteArticle(position: Int) {
-        
-        print("deleteArticle position:")
-        print(position)
-        print(MyVar.savedArticles![position].title!)
         context.delete(MyVar.savedArticles![position])
-        
         saveCore()
     }
     
@@ -198,9 +183,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 extension SecondViewController: MasterThirdTableViewControllerDelegate {
     func deleteSelectedArticle(didSelect: Int) {
-        print("delete")
-        print(didSelect)
-        
         self.deleteArticle(position: didSelect)
     }
 }
