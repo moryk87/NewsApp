@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (4.6.0)
+  - PKHUD (5.0.0)
+  - SwiftyJSON (4.0.0)
+  - SwipeCellKit (2.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - PKHUD
+  - SwiftyJSON
+  - SwipeCellKit
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
+
+PODFILE CHECKSUM: b7339121c2b2ee9195880255601e2e341cf29b4c
+
+COCOAPODS: 1.4.0
